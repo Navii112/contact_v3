@@ -5,6 +5,7 @@ import repository.ContactRepository;
 import state.ContactState;
 import vo.Contact;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -68,5 +69,21 @@ public class ContactService {
             // 존재하지 않는 경우
             System.out.println("존재하지 않는 ID 입니다.");
         }
+    }
+
+    public Map<Long, Contact> search(String keyword) {
+        System.out.println("[ContactService.search()]");
+        // 결과를 담을 맵 선언
+        Map<Long, Contact> result = new HashMap<>();
+        // 전체를 돌면서 이름에 keyword가 있는지 확인
+        // 있으면 result에다 담는다.
+        for (Long key : state.getStore().keySet()) {
+            Contact contact = state.getStore().get(key);
+            if (contact.getName().contains(keyword)) {
+                // result에 담는다.
+                result.put(key, contact);
+            }
+        }
+        return result;
     }
 }
