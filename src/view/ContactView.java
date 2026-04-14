@@ -84,6 +84,11 @@ public class ContactView {
 
     private void update() {
         System.out.println("[ContactView.update()]");
+        System.out.println("수정 할 아이디 : ");
+        Long updateId = sc.nextLong();
+        System.out.println("수정 할 전화번호 : ");
+        String updatePhone = sc.next();
+        contactService.update(updateId, updatePhone);
     }
 
     private void delete(){
