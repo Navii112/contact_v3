@@ -47,7 +47,7 @@ public class ContactView {
     }
 
     private void search(){
-        System.out.println("[ContactView.readAll()]");
+        System.out.println("[ContactView.search()]");
     }
 
     private void readAll() {
@@ -83,10 +83,14 @@ public class ContactView {
     }
 
     private void update() {
-        System.out.println("[ContactView.readAll()]");
+        System.out.println("[ContactView.update()]");
     }
 
     private void delete(){
-        System.out.println("[ContactView.readAll()]");
+        System.out.println("[ContactView.delete()]");
+        System.out.println("삭제 아이디 : ");
+        Long deleteId = sc.nextLong();
+        // 서비스로 id 보내기
+        contactService.delete(deleteId);
     }
 }

@@ -30,9 +30,9 @@ public class ContactRepository {
         return state.getStore();
     }
 
-    public Optional<Contact> findById(int searchNumber) {
-        Contact foundContact = Main.contactMap.get(searchNumber);
-        return Optional.ofNullable(foundContact);
+    public boolean findById(Long deleteId) {
+        System.out.println("[ContactRepository.findById()]");
+        return state.getStore().containsKey(deleteId);
     }
 
     public void delete(Contact deleteContact) {
@@ -51,5 +51,10 @@ public class ContactRepository {
             }
         }
         return searchResult;
+    }
+
+    public void deleteById(Long deleteId) {
+        System.out.println("[ContactRepository.deleteById()]");
+        state.getStore().remove(deleteId);
     }
 }

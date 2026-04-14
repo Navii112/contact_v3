@@ -36,6 +36,22 @@ public class ContactService {
     }
 
     public Map<Long, Contact> findAll() {
+        System.out.println("ContactService.findAll()]");
         return repository.findAll();
+    }
+
+    public void delete(Long deleteId) {
+        System.out.println("ContactService.delete()]");
+        // 해당 아이디 존재 확인
+        boolean existsId = repository.findById(deleteId);
+        // 있다면 삭제 요청
+        if (existsId) {
+            // 존재하는 경우 -> 삭제 요청
+            repository.deleteById(deleteId);
+            System.out.println("정상적으로 삭제되었습니다.");
+        } else {
+            // 존재하지 않는 경우
+            System.out.println("존재하지 않는 ID 입니다.");
+        }
     }
 }
