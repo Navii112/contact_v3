@@ -25,8 +25,9 @@ public class ContactRepository {
         System.out.println("ID 증가 완료");
     }
 
-    public Map<Integer, Contact> findAll() {
-        return new HashMap<>(Main.contactMap);
+    public Map<Long, Contact> findAll() {
+        System.out.println("[ContactRepository.findAll()]");
+        return state.getStore();
     }
 
     public Optional<Contact> findById(int searchNumber) {
