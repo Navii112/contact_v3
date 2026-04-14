@@ -8,10 +8,11 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class ContactView {
-    private ContactService contactService = new ContactService();
+    private final ContactService contactService;
     private final Scanner sc;
 
-    public ContactView(Scanner sc) {
+    public ContactView(ContactService contactService, Scanner sc) {
+        this.contactService = contactService;
         this.sc = sc;
     }
 
@@ -76,10 +77,19 @@ public class ContactView {
 
     private void create(){
         System.out.println("[ContactView.create()]");
-        String name = sc.nextLine();
-        System.out.println("전화번호를 입력하세요.");
-        String phone = sc.nextLine();
-        contactService.create(name,phone);
+        // 이름과 나이, 전화번호를 입력 받아서
+        // 서비스에 전달한다.
+        String name;
+        int age;
+        String phone;
+        System.out.println("이름 : ");
+        name = sc.next();
+        System.out.println("나이 : ");
+        age = sc.nextInt();
+        System.out.println("전화번호 : ");
+        phone = sc.next();
+        // 받은 값들을 service.ContactService.insert() 전달
+        contactService.insert(name, age, phone);
     }
 
     private void update() {
